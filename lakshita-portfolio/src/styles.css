@@ -1,0 +1,68 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+ --font-sans: 'Manrope', sans-serif;
+ --font-display: 'Space Grotesk', sans-serif;
+ --font-mono: 'IBM Plex Mono', monospace;
+ --color-background: var(--background); --color-foreground: var(--foreground);
+ --color-card: var(--card); --color-card-foreground: var(--foreground);
+ --color-popover: var(--card); --color-popover-foreground: var(--foreground);
+ --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+ --color-secondary: var(--secondary); --color-secondary-foreground: var(--foreground);
+ --color-muted: var(--secondary); --color-muted-foreground: var(--muted-foreground);
+ --color-accent: var(--secondary); --color-accent-foreground: var(--foreground);
+ --color-border: var(--border); --color-input: var(--border); --color-ring: var(--primary);
+ --color-destructive: var(--destructive); --color-destructive-foreground: var(--foreground);
+ --color-signal: var(--signal); --radius-md: 4px; --radius-lg: 6px;
+}
+:root {
+ --background: oklch(0.115 0.003 250); --foreground: oklch(0.94 0.006 80);
+ --card: oklch(0.155 0.004 250); --secondary: oklch(0.20 0.004 250);
+ --primary: oklch(0.85 0.08 78); --primary-foreground: oklch(0.15 0.005 80);
+ --muted-foreground: oklch(0.64 0.008 250); --border: oklch(0.30 0.008 250);
+ --signal: oklch(0.75 0.10 160); --destructive: oklch(0.65 0.20 25);
+ --space-shade: oklch(0.08 0 0 / 28%); --space-fade: oklch(0.115 0.003 250 / 0%);
+}
+@layer base {
+ * { border-color: var(--border); }
+ body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+ button,a { -webkit-tap-highlight-color: transparent; }
+ ::selection { background: var(--primary); color: var(--primary-foreground); }
+}
+.site-header { height: 94px; border-bottom: 1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 6%; }
+.wordmark { font-family:var(--font-display); font-weight:600; font-size:21px; display:flex; align-items:center; gap:12px; }
+.wordmark svg { color:var(--primary); }
+.nav-link { font-size:12px; color:var(--muted-foreground); padding:12px 0; position:relative; transition:color .2s; }
+.nav-link:hover,.nav-link.active {color:var(--foreground);}
+.nav-link.active::after {content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--primary);}
+.hero { min-height:610px; height: calc(100svh - 154px); max-height:790px; position:relative; display:flex; align-items:center; isolation:isolate; overflow:hidden; }
+.hero-image {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-3;}
+.hero::after {content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,var(--space-shade),transparent 70%),linear-gradient(0deg,var(--background),var(--space-fade) 28%);}
+.hero-content {width:100%;padding:40px 8%;}
+.eyebrow {font-family:var(--font-mono);font-size:10px;letter-spacing:2px; text-transform:uppercase;color:var(--primary);display:flex;align-items:center;gap:10px;}
+.hero h1 {font-family:var(--font-display);font-weight:400;font-size:80px;line-height:1.08;margin:28px 0 24px;letter-spacing:0;}
+.hero h1 span {color:var(--primary);}
+.hero-description {max-width:400px;font-size:14px;line-height:1.9;color:var(--muted-foreground);}
+.hero-caption {position:absolute;bottom:31px;right:6%;font-size:9px;color:var(--muted-foreground);font-family:var(--font-mono);letter-spacing:2px;}
+.hero-bottom {position:absolute;bottom:30px;left:8%;display:flex;gap:12px;align-items:center;font-family:var(--font-mono);font-size:9px;letter-spacing:2px;color:var(--muted-foreground);}
+.section-wrap {max-width:1200px;margin:auto;padding:70px 5%;}
+.section-heading {font-size:34px;font-weight:400;font-family:var(--font-display);line-height:1.25;}
+.section-number {font-family:var(--font-mono);color:var(--primary);font-size:11px;}
+.mission-row {display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:32px;}
+.body-copy {font-size:14px;color:var(--muted-foreground);line-height:1.9;}
+.skill-item {padding:24px 0;border-top:1px solid var(--border);display:flex;gap:20px;align-items:flex-start;}
+.skill-icon {color:var(--primary);padding-top:2px;}
+.content-page {min-height:calc(100svh - 170px);max-width:1200px;margin:auto;padding:80px 5%;}
+.page-title {font-family:var(--font-display);font-size:60px;font-weight:400;line-height:1.15;margin-top:20px;}
+.page-subtitle {max-width:540px;margin-top:22px;font-size:15px;line-height:1.9;color:var(--muted-foreground);}
+.project-card {border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--card);}
+.project-art {height:180px;background:var(--secondary);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.project-art svg {width:80px;height:80px;stroke-width:0.7;color:var(--primary);}
+.project-art::before {content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:.3;}
+.site-footer {border-top:1px solid var(--border);padding:26px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:10px;color:var(--muted-foreground);font-family:var(--font-mono);}
+.page-enter {animation:arrive .6s ease-out both;}
+@keyframes arrive {from {opacity:0;transform:translateY(12px)}to {opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.page-enter{animation:none}}
+@media(max-width:767px){.site-header{height:76px;padding:0 6%;}.wordmark{font-size:18px}.desktop-nav{display:none}.hero{height:690px;min-height:0;max-height:calc(100svh - 76px)}.hero-image{object-position:62% center;opacity:.35}.hero h1{font-size:54px}.hero-content{padding:35px 7%}.hero-description{max-width:310px}.hero-caption{display:none}.hero-bottom{left:7%;}.mission-row{grid-template-columns:1fr;gap:30px}.section-wrap{padding:48px 7%}.content-page{padding:50px 7%;}.page-title{font-size:43px}.site-footer{flex-direction:column;align-items:flex-start;}.section-heading{font-size:29px}}
