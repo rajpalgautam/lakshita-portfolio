@@ -106,9 +106,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
+        <head>
+  <script
+    src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"
+    async
+  />
+  <script
+    src="https://files.bpcontent.cloud/2026/10/14/04/20261014045952-TRNK2ZMG.js"
+    defer
+  />
+  <HeadContent />
+</head>
       <body>
         {children}
         <Scripts />
